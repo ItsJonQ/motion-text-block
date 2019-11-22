@@ -4,15 +4,19 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-/**
- * #.# Styles
- *
- * CSS for both Frontend+Backend.
- */
-.wp-block-cgb-block-motion-text-block {
-  background: orangered;
-  border: 0.2rem solid #292929;
-  color: #292929;
-  margin: 0 auto;
-  max-width: 740px;
-  padding: 2rem; }
+.wp-block-motion-text-element {
+  position: relative; }
+
+.wp-block-motion-text-element__wrapper {
+  line-height: inherit;
+  position: relative;
+  display: block;
+  overflow: hidden; }
+
+.wp-block-motion-text-element__letters {
+  overflow: hidden; }
+
+.wp-block-motion-text-element__wrapper .letter {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: inline-block; }

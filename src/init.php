@@ -53,6 +53,32 @@ function motion_text_block_cgb_block_assets() { // phpcs:ignore
 		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
 	);
 
+	// Register lib styles for frontend.
+	wp_enqueue_style(
+		'motion_text_anime_css',
+		plugins_url( '/lib/motion-text.css', dirname( __FILE__ ) ),
+		array( ),
+		null,
+		'all'
+	);
+
+	// Register lib script for frontend.
+	wp_enqueue_script(
+		'motion_text_anime',
+		plugins_url( '/lib/anime.min.js', dirname( __FILE__ ) ),
+		array( ),
+		null,
+		true
+	);
+
+	wp_enqueue_script(
+		'motion_text_lib',
+		plugins_url( '/lib/motion-text.js', dirname( __FILE__ ) ),
+		array( 'motion_text_anime' ),
+		null,
+		true
+	);
+
 	// WP Localized globals. Use dynamic PHP stuff in JavaScript via `cgbGlobal` object.
 	wp_localize_script(
 		'motion_text_block-cgb-block-js',
