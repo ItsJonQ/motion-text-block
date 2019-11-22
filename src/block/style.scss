@@ -1,19 +1,11 @@
 .wp-block-motion-text-element {
-	position: relative;
-}
-
-.wp-block-motion-text-element__wrapper {
 	line-height: inherit;
 	position: relative;
 	display: block;
 	overflow: hidden;
 }
 
-.wp-block-motion-text-element__letters {
-	overflow: hidden;
-}
-
-.wp-block-motion-text-element__wrapper .letter {
+.wp-block-motion-text-element .letter {
 	box-sizing: border-box;
 	display: inline-block;
 }

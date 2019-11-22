@@ -2,9 +2,21 @@ import 'animejs';
 
 const { anime } = window;
 
-const fadeIn = ( options ) => {
+const getLetters = ref => ref.querySelectorAll( '.letter' );
+
+const fadeUp = ( { ref, ...options } ) => {
 	return anime( {
-		targets: '.letter',
+		targets: getLetters( ref ),
+		opacity: [ 0, 1 ],
+		translateY: [ '100%', 0 ],
+		duration: 1250,
+		...options,
+	} );
+};
+
+const fadeIn = ( { ref, ...options } ) => {
+	return anime( {
+		targets: getLetters( ref ),
 		opacity: [ 0, 1 ],
 		easing: 'linear',
 		duration: 1250,
@@ -12,10 +24,10 @@ const fadeIn = ( options ) => {
 	} );
 };
 
-const fadeInStagger = ( options ) => {
+const fadeInStagger = ( { ref, ...options } ) => {
 	return anime.timeline( options )
 		.add( {
-			targets: '.letter',
+			targets: getLetters( ref ),
 			opacity: [ 0, 1 ],
 			easing: 'easeInOutQuad',
 			duration: 1250,
@@ -23,9 +35,9 @@ const fadeInStagger = ( options ) => {
 		} );
 };
 
-const staggerUp = ( options ) => {
+const staggerUp = ( { ref, ...options } ) => {
 	return anime.timeline( options ).add( {
-		targets: '.letter',
+		targets: getLetters( ref ),
 		opacity: [ 0, 1 ],
 		translateY: [ '100%', 0 ],
 		translateZ: 0,
@@ -36,6 +48,7 @@ const staggerUp = ( options ) => {
 
 const sequences = {
 	fadeIn,
+	fadeUp,
 	fadeInStagger,
 	staggerUp,
 };
@@ -54,3 +67,5 @@ export function createSequence( name ) {
 		animation( mergedOptions );
 	};
 }
+
+export const createMotion = createSequence;

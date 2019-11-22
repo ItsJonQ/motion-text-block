@@ -1,17 +1,11 @@
-/* .wp-block-motion-text-element {
+.wp-block-motion-text-element {
+	line-height: inherit;
 	position: relative;
-}
-
-.wp-block-motion-text-element__wrapper {
-	position: relative;
-	display: inline-block;
-	padding-top: 0.2em;
-	padding-right: 0.05em;
-	padding-bottom: 0.1em;
+	display: block;
 	overflow: hidden;
 }
 
 .wp-block-motion-text-element .letter {
+	box-sizing: border-box;
 	display: inline-block;
-	line-height: 1em;
-} */
+}
