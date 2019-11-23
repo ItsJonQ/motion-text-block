@@ -6,7 +6,7 @@ const getLetters = ref => ref.querySelectorAll( '.letter' );
 
 const fadeUp = ( { ref, ...options } ) => {
 	return anime( {
-		targets: getLetters( ref ),
+		targets: ref,
 		opacity: [ 0, 1 ],
 		translateY: [ '100%', 0 ],
 		duration: 1250,
@@ -16,7 +16,7 @@ const fadeUp = ( { ref, ...options } ) => {
 
 const fadeIn = ( { ref, ...options } ) => {
 	return anime( {
-		targets: getLetters( ref ),
+		targets: ref,
 		opacity: [ 0, 1 ],
 		easing: 'linear',
 		duration: 1250,
