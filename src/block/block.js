@@ -122,15 +122,15 @@ const withMotionControls = createHigherOrderComponent( ( BlockEdit ) => {
 							value={ motionType }
 							options={ motionControlTypeOptions }
 							onChange={ handleOnChangeMotion }
-							isDisabled={ isPreviewing }
+							disabled={ isPreviewing }
 						/>
 						{ isMotionEnabled ? (
 							<Button
 								isDefault
 								onClick={ handlePreviewMotion }
-								isDisabled={ isPreviewing }
+								disabled={ isPreviewing }
 							>
-								Preview
+								{ isPreviewing ? 'Previewing...' : 'Preview' }
 							</Button>
 						) : null }
 					</PanelBody>
@@ -146,9 +146,6 @@ addFilter(
 	withMotionControls
 );
 
-/**
- * Add margin style attribute to save element of block.
- */
 const addMotionSaveContentProps = ( saveElementProps, blockType, attributes ) => {
 	// Do nothing if it's another block than our defined ones.
 	if ( ! enableMotionControlOnBlocks.includes( blockType.name ) ) {
@@ -215,9 +212,7 @@ function previewMotion( {
 			opacity: [ 0, 1 ],
 			easing: 'linear',
 			duration: 500,
-			complete: () => {
-				onComplete( false );
-			},
+			complete: onComplete,
 		} );
 	};
 

@@ -3,7 +3,6 @@
 	position: relative;
 	display: block;
 	overflow: hidden;
-	opacity: 0;
 }
 
 .wp-block-motion-text-element .letter {
