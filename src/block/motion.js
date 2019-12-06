@@ -20,6 +20,10 @@ export const motionControlTypeOptions = [
 		label: __( 'Stagger Up' ),
 		value: 'staggerUp',
 	},
+	{
+		label: __( 'GLITCHED' ),
+		value: 'glitched',
+	},
 ];
 
 export function createAddControlAttributes( blocks ) {
