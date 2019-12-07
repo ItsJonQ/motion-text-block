@@ -63,18 +63,18 @@ function motion_text_block_cgb_block_assets() { // phpcs:ignore
 	);
 
 	// Register lib script for frontend.
-	wp_enqueue_script(
-		'motion_text_anime',
-		plugins_url( '/lib/anime.min.js', dirname( __FILE__ ) ),
-		array( ),
-		null,
-		true
-	);
+	// wp_enqueue_script(
+	// 	'motion_text_anime',
+	// 	plugins_url( '/lib/anime.min.js', dirname( __FILE__ ) ),
+	// 	array( ),
+	// 	null,
+	// 	true
+	// );
 
 	wp_enqueue_script(
-		'motion_text_lib',
-		plugins_url( '/lib/motion-text.js', dirname( __FILE__ ) ),
-		array( 'motion_text_anime' ),
+		'blocksy_umd',
+		plugins_url( '/dist/blocksy.umd.js', dirname( __FILE__ ) ),
+		array(),
 		null,
 		true
 	);

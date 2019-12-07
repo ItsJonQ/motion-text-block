@@ -1,1 +1,1 @@
-export const supportedBlocks = [ 'core/group' ];
+export const supportedBlocks = ['core/group'];

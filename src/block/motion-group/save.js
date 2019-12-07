@@ -2,22 +2,22 @@ import { supportedBlocks } from './utils';
 
 const { addFilter } = wp.hooks;
 
-const addMotionSaveContentProps = ( saveElementProps, blockType, attributes ) => {
+const addMotionSaveContentProps = (saveElementProps, blockType, attributes) => {
 	// Do nothing if it's another block than our defined ones.
-	if ( ! supportedBlocks.includes( blockType.name ) ) {
+	if (!supportedBlocks.includes(blockType.name)) {
 		return saveElementProps;
 	}
 	const { motionType } = attributes;
 	const isMotionEnabled = motionType !== 'none';
 
-	if ( ! isMotionEnabled ) {
+	if (!isMotionEnabled) {
 		return saveElementProps;
 	}
 
-	Object.assign( saveElementProps, {
+	Object.assign(saveElementProps, {
 		className: 'wp-block-motion-text-element',
 		'data-motion-type': motionType,
-	} );
+	});
 
 	return saveElementProps;
 };
@@ -25,5 +25,5 @@ const addMotionSaveContentProps = ( saveElementProps, blockType, attributes ) =>
 addFilter(
 	'blocks.getSaveContent.extraProps',
 	'extend-block-example/get-save-content-group',
-	addMotionSaveContentProps
+	addMotionSaveContentProps,
 );

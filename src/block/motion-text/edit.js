@@ -12,25 +12,25 @@ const { Button, PanelBody, RangeControl, SelectControl } = wp.components;
 /**
  * Create HOC to add motion control to inspector controls of block.
  */
-const withMotionControls = createHigherOrderComponent( ( BlockEdit ) => {
-	return ( props ) => {
-		const ref = createRef( null );
-		const [ isPreviewing, setPreviewing ] = useState( false );
+const withMotionControls = createHigherOrderComponent(BlockEdit => {
+	return props => {
+		const ref = createRef(null);
+		const [isPreviewing, setPreviewing] = useState(false);
 
 		// Do nothing if it's another block than our defined ones.
-		if ( ! supportedBlocks.includes( props.name ) ) {
-			return <BlockEdit { ...props } />;
+		if (!supportedBlocks.includes(props.name)) {
+			return <BlockEdit {...props} />;
 		}
 
 		const { setAttributes } = props;
 		const { motionType, delay } = props.attributes;
 		const isMotionEnabled = motionType !== 'none';
 
-		const handleOnStart = () => setPreviewing( true );
-		const handleOnComplete = () => setPreviewing( false );
+		const handleOnStart = () => setPreviewing(true);
+		const handleOnComplete = () => setPreviewing(false);
 
-		const previewMotionType = ( activeMotionType = motionType ) => {
-			previewMotion( {
+		const previewMotionType = (activeMotionType = motionType) => {
+			previewMotion({
 				motionType: activeMotionType,
 				ref: ref.current,
 				onStart: handleOnStart,
@@ -38,73 +38,76 @@ const withMotionControls = createHigherOrderComponent( ( BlockEdit ) => {
 				options: {
 					delay,
 				},
-			} );
+			});
 		};
 
 		const handlePreviewMotion = () => {
-			previewMotionType( motionType );
+			previewMotionType(motionType);
 		};
 
-		const handleOnChangeMotion = ( selectedMotionType ) => {
-			setAttributes( {
+		const handleOnChangeMotion = selectedMotionType => {
+			setAttributes({
 				motionType: selectedMotionType,
-			} );
+			});
 
-			previewMotionType( selectedMotionType );
+			previewMotionType(selectedMotionType);
 		};
 
-		const handleOnChangeDelay = ( newDelay ) => {
-			setAttributes( { delay: newDelay } );
+		const handleOnChangeDelay = newDelay => {
+			setAttributes({ delay: newDelay });
 		};
 
 		return (
 			<Fragment>
-				<div ref={ ref }>
-					<BlockEdit { ...props } />
+				<div ref={ref}>
+					<BlockEdit {...props} />
 				</div>
 				<InspectorControls>
 					<PanelBody
-						title={ __( 'Motion' ) }
-						initialOpen={ isMotionEnabled }
+						title={__('Motion')}
+						initialOpen={isMotionEnabled}
 					>
 						<SelectControl
-							label={ __( 'Animation' ) }
-							value={ motionType }
-							options={ motionControlTypeOptions }
-							onChange={ handleOnChangeMotion }
-							disabled={ isPreviewing }
+							label={__('Animation')}
+							value={motionType}
+							options={motionControlTypeOptions}
+							onChange={handleOnChangeMotion}
+							disabled={isPreviewing}
 						/>
-						{ isMotionEnabled ? (
+						{isMotionEnabled ? (
 							<Fragment>
-								<div style={ { marginTop: -16, marginBottom: 20 } }>
+								<div
+									style={{ marginTop: -16, marginBottom: 20 }}
+								>
 									<Button
 										isDefault
-										onClick={ handlePreviewMotion }
-										disabled={ isPreviewing }
+										onClick={handlePreviewMotion}
+										disabled={isPreviewing}
 									>
-										{ isPreviewing ? 'Previewing...' : 'Preview' }
+										{isPreviewing
+											? 'Previewing...'
+											: 'Preview'}
 									</Button>
 								</div>
 								<RangeControl
 									label="Animation Delay"
-									value={ delay }
-									onChange={ handleOnChangeDelay }
-									min={ 0 }
-									max={ 6000 }
-									step={ 100 }
+									value={delay}
+									onChange={handleOnChangeDelay}
+									min={0}
+									max={6000}
+									step={100}
 								/>
 							</Fragment>
-						) : null }
-
+						) : null}
 					</PanelBody>
 				</InspectorControls>
 			</Fragment>
 		);
 	};
-}, 'withMotionControls' );
+}, 'withMotionControls');
 
 addFilter(
 	'editor.BlockEdit',
 	'extend-block-example/with-motion-control-text',
-	withMotionControls
+	withMotionControls,
 );

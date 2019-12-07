@@ -1,1 +1,1 @@
-export const supportedBlocks = [ 'core/heading', 'core/paragraph' ];
+export const supportedBlocks = ['core/heading', 'core/paragraph'];

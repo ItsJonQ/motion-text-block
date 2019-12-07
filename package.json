@@ -1,14 +1,28 @@
 {
-  "name": "motion-text-block-cgb-guten-block",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "start": "cgb-scripts start",
-    "build": "cgb-scripts build",
-    "eject": "cgb-scripts eject"
-  },
-  "dependencies": {
-    "animejs": "3.1.0",
-    "cgb-scripts": "1.22.0"
-  }
+	"name": "motion-text-block-cgb-guten-block",
+	"version": "1.0.0",
+	"private": true,
+	"source": "src/blocksy.js",
+	"main": "dist/blocksy.js",
+	"module": "dist/blocksy.mjs",
+	"unpkg": "dist/blocksy.umd.js",
+	"scripts": {
+		"start": "concurrently \"npm run gb:start\" \"npm run lib:start\"",
+		"build": "concurrently \"npm run gb:build\" \"npm run lib:build\"",
+		"gb:start": "cgb-scripts start",
+		"gb:build": "cgb-scripts build",
+		"gb:eject": "cgb-scripts eject",
+		"lib:build": "microbundle --external=all",
+		"lib:start": "microbundle watch --external=all",
+		"format": "zero format"
+	},
+	"dependencies": {
+		"animejs": "3.1.0",
+		"cgb-scripts": "1.22.0"
+	},
+	"devDependencies": {
+		"@itsjonq/zero": "4.1.9",
+		"concurrently": "5.0.0",
+		"microbundle": "0.11.0"
+	}
 }
